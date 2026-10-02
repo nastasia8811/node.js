@@ -1,4 +1,6 @@
 import { createServer } from 'node:http';
+import { fileDB } from "./src/HW_2/fileDB.js"
+import { newspostSchema } from "./src/schemas/newpostSchema.js";
 
 let requestCount = 0;
 let port = 3000;
@@ -39,3 +41,34 @@ server.listen(port, '127.0.0.1', () => {
 // });
 //
 // const port = parseInt(values.port, 10);
+
+fileDB.registerSchema("newspost", newspostSchema);
+const newspostTable = fileDB.getTable("newspost");
+
+const data = {
+    title: 'У зоопарку Чернігова лисичка народила лисеня',
+    text: "В Чернігівському заопарку сталася чудова подія! Лисичка на ім'я Руда народила чудове лисенятко! Тож поспішайте навідатись та подивитись на це миле створіння!"
+}
+
+// додаємо новий запис, та повертаємо його з новим id
+const createdNewspost = newspostTable.create(data);
+console.log("create:", createdNewspost);
+
+// повертаємо усі записи у базі у вигляді масиву
+const newsposts = newspostTable.getAll();
+console.log("getAll:", newsposts);
+
+// повертаємо запис за вказаним id
+const newspost = newspostTable.getById(createdNewspost.id);
+console.log("getById:", newspost);
+
+// оновлюємо поле title за вказаним id та повертаємо оновлений запис
+const updatedNewsposts = newspostTable.update(createdNewspost.id, { title: "Маленька лисичка", size: 2 });
+console.log("update:", updatedNewsposts);
+
+// видаляємо запис за вказаним id та повертаємо id видаленого запису
+const deletedId = newspostTable.delete(createdNewspost.id);
+console.log("delete:", deletedId);
+
+const getAllAfterDelete = newspostTable.getAll();
+console.log("getAll після delete:", getAllAfterDelete);

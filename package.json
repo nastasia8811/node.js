@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "server.mjs",
   "scripts": {
-    "start": "node server.mjs",
-    "prepare": "husky",
-    "dev": "nodemon server.mjs"
+    "start": "nodemon server.mjs",
+    "prepare": "husky"
   },
   "type": "module",
   "lint-staged": {
@@ -20,9 +19,11 @@
   "nodemonConfig": {
     "ignore": [
       "**/test/**",
-      "**/docs/**"
-    ],
-    "delay": 2500
+      "**/docs/**",
+      [
+        "data/*"
+      ]
+    ]
   },
   "repository": {
     "type": "git",
