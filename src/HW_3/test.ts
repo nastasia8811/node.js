@@ -1,6 +1,7 @@
 import { Card } from './card.js'
 import { Transaction } from './transaction.js'
 import { CurrencyEnum } from './enum.js'
+import { BonusCard } from './bonusCard.js'
 
 const card = new Card()
 
@@ -12,13 +13,23 @@ const id2 = card.AddTransaction(CurrencyEnum.USD, 90)
 const id3 = card.AddTransaction(transactionUSD)
 const id4 = card.AddTransaction(transactionUAH)
 
-console.log('transactionUSD: ', transactionUSD)
-console.log('transactionUAH: ', transactionUAH)
-console.log('id1: ', card.GetTransaction(id1))
-console.log('id2: ', card.GetTransaction(id2))
-console.log('id3: ', card.GetTransaction(id3))
-console.log('id3: ', card.GetTransaction(id4))
-console.log('GetBalance USD: ', card.GetBalance(CurrencyEnum.USD))
-console.log('GetBalance UAH: ', card.GetBalance(CurrencyEnum.UAH))
+console.log('card transactionUSD: ', transactionUSD)
+console.log('card transactionUAH: ', transactionUAH)
+console.log('card id1: ', card.GetTransaction(id1))
+console.log('card id2: ', card.GetTransaction(id2))
+console.log('card id3: ', card.GetTransaction(id3))
+console.log('card id3: ', card.GetTransaction(id4))
+console.log('card GetBalance USD: ', card.GetBalance(CurrencyEnum.USD))
+console.log('card GetBalance UAH: ', card.GetBalance(CurrencyEnum.UAH))
+
+const bonusCard = new BonusCard()
+
+console.log('bonusCard GetBalance USD: ', bonusCard.GetBalance(CurrencyEnum.USD))
+console.log(
+  'bonusCard AddTransaction: ',
+  bonusCard.AddTransaction(new Transaction(50, CurrencyEnum.USD))
+)
+console.log('bonusCard AddTransaction: ', bonusCard.AddTransaction(CurrencyEnum.USD, 100))
+console.log(bonusCard.GetBalance(CurrencyEnum.USD))
 
 //npx tsx src/HW_3/test.ts

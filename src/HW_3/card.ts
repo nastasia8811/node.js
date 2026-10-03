@@ -1,7 +1,8 @@
 import { Transaction } from './transaction.js'
 import { CurrencyEnum } from './enum.js'
+import type { ICard } from './interface.js'
 
-export class Card {
+export class Card implements ICard {
   private transactions: Transaction[] = []
 
   AddTransaction(transaction: Transaction): string
