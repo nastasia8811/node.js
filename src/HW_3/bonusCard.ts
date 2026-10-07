@@ -4,9 +4,6 @@ import { Transaction } from './transaction.js'
 import { CurrencyEnum } from './enum.js'
 
 export class BonusCard extends Card implements ICard {
-  override AddTransaction(transaction: Transaction): string
-  override AddTransaction(currency: CurrencyEnum, amount: number): string
-
   override AddTransaction(arg: Transaction | CurrencyEnum, arg2?: number): string {
     if (arg instanceof Transaction) {
       const id = super.AddTransaction(arg)

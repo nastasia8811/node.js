@@ -5,15 +5,12 @@ import type { ICard } from './interface.js'
 export class Card implements ICard {
   private transactions: Transaction[] = []
 
-  AddTransaction(transaction: Transaction): string
-  AddTransaction(currency: CurrencyEnum, amount: number): string
-
   AddTransaction(arg: Transaction | CurrencyEnum, arg2?: number): string {
     if (arg instanceof Transaction) {
       this.transactions.push(arg)
       return arg.id
     }
-    if (arg2 == undefined) {
+    if (arg2 === undefined) {
       throw new Error('Amount is required')
     }
 
